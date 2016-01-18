@@ -10,12 +10,13 @@
 		8703CE80ABF4D08C7613830A /* libPods-ChallengeView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 052811A27AA83CB2AE908404 /* libPods-ChallengeView.a */; };
 		C55D12661C49D8AE00FEF6C6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C55D12651C49D8AE00FEF6C6 /* main.m */; };
 		C55D12691C49D8AE00FEF6C6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C55D12681C49D8AE00FEF6C6 /* AppDelegate.m */; };
-		C55D126C1C49D8AE00FEF6C6 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C55D126B1C49D8AE00FEF6C6 /* FirstViewController.m */; };
-		C55D126F1C49D8AE00FEF6C6 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C55D126E1C49D8AE00FEF6C6 /* SecondViewController.m */; };
 		C55D12721C49D8AE00FEF6C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C55D12701C49D8AE00FEF6C6 /* Main.storyboard */; };
 		C55D12741C49D8AE00FEF6C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C55D12731C49D8AE00FEF6C6 /* Assets.xcassets */; };
 		C55D12771C49D8AE00FEF6C6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C55D12751C49D8AE00FEF6C6 /* LaunchScreen.storyboard */; };
 		C55D12801C49D8CB00FEF6C6 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C55D127F1C49D8CB00FEF6C6 /* HealthKit.framework */; };
+		C5B915F71C4D716B00F21FD6 /* SavedChallengesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5B915F61C4D716B00F21FD6 /* SavedChallengesViewController.m */; };
+		C5B915FA1C4D718000F21FD6 /* ActiveChallengesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5B915F91C4D718000F21FD6 /* ActiveChallengesViewController.m */; };
+		C5B916001C4D720E00F21FD6 /* CompletedChallengesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5B915FF1C4D720E00F21FD6 /* CompletedChallengesViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,16 +27,18 @@
 		C55D12651C49D8AE00FEF6C6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C55D12671C49D8AE00FEF6C6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		C55D12681C49D8AE00FEF6C6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		C55D126A1C49D8AE00FEF6C6 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		C55D126B1C49D8AE00FEF6C6 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
-		C55D126D1C49D8AE00FEF6C6 /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		C55D126E1C49D8AE00FEF6C6 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		C55D12711C49D8AE00FEF6C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C55D12731C49D8AE00FEF6C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C55D12761C49D8AE00FEF6C6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C55D12781C49D8AE00FEF6C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C55D127E1C49D8CB00FEF6C6 /* ChallengeView.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ChallengeView.entitlements; sourceTree = "<group>"; };
 		C55D127F1C49D8CB00FEF6C6 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		C5B915F51C4D716B00F21FD6 /* SavedChallengesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavedChallengesViewController.h; sourceTree = "<group>"; };
+		C5B915F61C4D716B00F21FD6 /* SavedChallengesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavedChallengesViewController.m; sourceTree = "<group>"; };
+		C5B915F81C4D718000F21FD6 /* ActiveChallengesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveChallengesViewController.h; sourceTree = "<group>"; };
+		C5B915F91C4D718000F21FD6 /* ActiveChallengesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveChallengesViewController.m; sourceTree = "<group>"; };
+		C5B915FE1C4D720E00F21FD6 /* CompletedChallengesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompletedChallengesViewController.h; sourceTree = "<group>"; };
+		C5B915FF1C4D720E00F21FD6 /* CompletedChallengesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletedChallengesViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,15 +96,17 @@
 				C55D127E1C49D8CB00FEF6C6 /* ChallengeView.entitlements */,
 				C55D12671C49D8AE00FEF6C6 /* AppDelegate.h */,
 				C55D12681C49D8AE00FEF6C6 /* AppDelegate.m */,
-				C55D126A1C49D8AE00FEF6C6 /* FirstViewController.h */,
-				C55D126B1C49D8AE00FEF6C6 /* FirstViewController.m */,
-				C55D126D1C49D8AE00FEF6C6 /* SecondViewController.h */,
-				C55D126E1C49D8AE00FEF6C6 /* SecondViewController.m */,
 				C55D12701C49D8AE00FEF6C6 /* Main.storyboard */,
 				C55D12731C49D8AE00FEF6C6 /* Assets.xcassets */,
 				C55D12751C49D8AE00FEF6C6 /* LaunchScreen.storyboard */,
 				C55D12781C49D8AE00FEF6C6 /* Info.plist */,
 				C55D12641C49D8AE00FEF6C6 /* Supporting Files */,
+				C5B915F51C4D716B00F21FD6 /* SavedChallengesViewController.h */,
+				C5B915F61C4D716B00F21FD6 /* SavedChallengesViewController.m */,
+				C5B915F81C4D718000F21FD6 /* ActiveChallengesViewController.h */,
+				C5B915F91C4D718000F21FD6 /* ActiveChallengesViewController.m */,
+				C5B915FE1C4D720E00F21FD6 /* CompletedChallengesViewController.h */,
+				C5B915FF1C4D720E00F21FD6 /* CompletedChallengesViewController.m */,
 			);
 			path = ChallengeView;
 			sourceTree = "<group>";
@@ -244,9 +249,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C55D126F1C49D8AE00FEF6C6 /* SecondViewController.m in Sources */,
+				C5B915FA1C4D718000F21FD6 /* ActiveChallengesViewController.m in Sources */,
+				C5B915F71C4D716B00F21FD6 /* SavedChallengesViewController.m in Sources */,
+				C5B916001C4D720E00F21FD6 /* CompletedChallengesViewController.m in Sources */,
 				C55D12691C49D8AE00FEF6C6 /* AppDelegate.m in Sources */,
-				C55D126C1C49D8AE00FEF6C6 /* FirstViewController.m in Sources */,
 				C55D12661C49D8AE00FEF6C6 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
