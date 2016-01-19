@@ -121,7 +121,7 @@
                 NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
                 NSURLSession *sendChallenge = [NSURLSession sessionWithConfiguration:sessionConfig];
                 NSURLSessionDataTask *task = [sendChallenge uploadTaskWithRequest:request fromData:data completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-                
+                    
                     if (error) {
                         return NSLog(@"error saving challenge to server");
                     }
@@ -130,7 +130,7 @@
                     if ([resp statusCode] != 201) {
                         return NSLog(@"error saving challenge on server: %ld", [resp statusCode]);
                     }
-                
+                    
                     NSLog(@"Challenge saved");
                     
                     AppDelegate *app = [UIApplication sharedApplication].delegate;
@@ -138,7 +138,7 @@
                     
                 }];
                 [task resume];
-                
+
             }
             
         }];

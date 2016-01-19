@@ -6,6 +6,8 @@
 //  Copyright © 2016 Sessions-io. All rights reserved.
 //
 
+#import <HealthKit/HealthKit.h>
+
 #import "SavedChallengeTableViewController.h"
 #import "SessionsConfiguration.h"
 #import "AppDelegate.h"
@@ -69,37 +71,111 @@
 
 -(IBAction)acceptChallenge:(id)sender {
     
-    // check to make sure helathkit is enabled
+
+    // before we load, check if user has enabled push notifications and healthkit
+    NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
     
-    // check to make sure push notification permissions have been asked
-    
-    // delete challenge from server and pop to root
-    NSLog(@"accepting %@", _challengeId);
-    NSString *signinEndpoint = [NSString stringWithFormat:@"%@/v1/users/me/challenges/%@", [SessionsConfiguration sessionsApiEndpoint], _challengeId];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:signinEndpoint] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    [request setHTTPMethod: @"PUT"];
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+    NSNumber *healthEnabled = [defs objectForKey:@"healthPerm"];
+    if (!healthEnabled || [healthEnabled integerValue] != 1) {
         
-        NSHTTPURLResponse *httpResonse = (NSHTTPURLResponse*)response;
-        if (connectionError) {
+        HKHealthStore *healthInstance = [[HKHealthStore alloc] init];
+        AppDelegate *app = [UIApplication sharedApplication].delegate;
+        
+        // if we haven't asked before, then ask here
+        NSSet *types = [[NSSet alloc] initWithObjects:[HKObjectType workoutType], nil];
+        
+        // just ask for read permission only, we aren't writing workouts
+        [healthInstance requestAuthorizationToShareTypes:nil readTypes:types completion:^(BOOL success, NSError * _Nullable error) {
             
-            NSLog(@"error adding challenge");
-            
-        } else {
-            
-            if ([httpResonse statusCode] == 200) {
-                
-                [[self navigationController] popToRootViewControllerAnimated:YES];
-                AppDelegate *app = [UIApplication sharedApplication].delegate;
-                [app refreshchallenges];
-                
-            } else {
-                NSLog(@"delete error");
+            if (error) {
+                NSLog(@"ERROR HANDLING HEALTHKIT AUTH: %@", error);
+                return;
             }
+            
+            if (success) {
+                [[NSUserDefaults standardUserDefaults] setObject:@(1) forKey:@"healthPerm"];
+                [[NSUserDefaults standardUserDefaults] synchronize];
+                [app installHealthListener];
+            } else {
+                NSLog(@"Healthkit permission failed");
+            }
+            
+            NSNumber *pushEnabled = [defs objectForKey:@"askedNotifications"];
+            if (!pushEnabled) {
+                
+                UIUserNotificationSettings *notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
+                [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
+                
+            }
+            
+            // add challenge
+            NSLog(@"accepting %@", _challengeId);
+            NSString *signinEndpoint = [NSString stringWithFormat:@"%@/v1/users/me/challenges/%@", [SessionsConfiguration sessionsApiEndpoint], _challengeId];
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:signinEndpoint] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30];
+            [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+            [request setHTTPMethod: @"PUT"];
+            [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                
+                NSHTTPURLResponse *httpResonse = (NSHTTPURLResponse*)response;
+                if (connectionError) {
+                    
+                    NSLog(@"error adding challenge");
+                    
+                } else {
+                    
+                    if ([httpResonse statusCode] == 200) {
+                        
+                        [[self navigationController] popToRootViewControllerAnimated:YES];
+                        AppDelegate *app = [UIApplication sharedApplication].delegate;
+                        [app refreshchallenges];
+                        
+                    } else {
+                        NSLog(@"delete error");
+                    }
+                }
+                
+            }];
+            
+        }];
+        
+    } else {
+        
+        NSNumber *pushEnabled = [defs objectForKey:@"askedNotifications"];
+        if (!pushEnabled) {
+            
+            UIUserNotificationSettings *notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
+            [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
+            
         }
         
-    }];
+        // add challenge
+        NSLog(@"accepting %@", _challengeId);
+        NSString *signinEndpoint = [NSString stringWithFormat:@"%@/v1/users/me/challenges/%@", [SessionsConfiguration sessionsApiEndpoint], _challengeId];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:signinEndpoint] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30];
+        [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+        [request setHTTPMethod: @"PUT"];
+        [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+            
+            NSHTTPURLResponse *httpResonse = (NSHTTPURLResponse*)response;
+            if (connectionError) {
+                
+                NSLog(@"error adding challenge");
+                
+            } else {
+                
+                if ([httpResonse statusCode] == 200) {
+                    
+                    [[self navigationController] popToRootViewControllerAnimated:YES];
+                    AppDelegate *app = [UIApplication sharedApplication].delegate;
+                    [app refreshchallenges];
+                    
+                } else {
+                    NSLog(@"delete error");
+                }
+            }
+            
+        }];
+    }
     
 }
 

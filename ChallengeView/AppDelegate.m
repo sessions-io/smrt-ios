@@ -32,6 +32,7 @@
     
         // if we've asked for notifiations and we have access, then register
         if ([defs objectForKey:@"askedNotifications"]) {
+            NSLog(@"registering");
             [[UIApplication sharedApplication] registerForRemoteNotifications];
         }
         
@@ -196,7 +197,7 @@
             
         } else {
             
-            NSLog(@"user signed in");
+            NSLog(@"user signed in %@", userId);
             NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
             NSLog(@"responseBody: %@", responseBody);
             AllChallengesViewController *ctrl = (AllChallengesViewController*)_window.rootViewController;
@@ -208,6 +209,14 @@
     [task resume];
     return YES;
 
+}
+
+- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings {
+    
+    NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
+    [defs setObject:@(1) forKey:@"askedNotifications"];
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
+    
 }
 
 // install background healthkit listener
@@ -383,6 +392,76 @@
     // start the observer query
     [healthInstance executeQuery:query];
     return YES;
+    
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+{
+    
+    // skip other user
+    NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
+    NSString *messageUserId = [userInfo objectForKey:@"userId"];
+    if (!userId || ![userId isEqualToString:messageUserId]) {
+        return completionHandler(UIBackgroundFetchResultNoData);
+    }
+    
+    // handle challenge completed
+    if ([[userInfo objectForKey:@"type"] isEqualToString:@"challenge_completed"]) {
+        
+        // refresh challenges
+        [self refreshchallenges];
+        return completionHandler(UIBackgroundFetchResultNewData);
+        
+    }
+    
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    
+    
+    // save the token
+    NSString *devTokes = [[deviceToken description] stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
+    devTokes = [devTokes stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    // return user id
+    NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
+    if (!userId) {
+        return;
+    }
+    
+    // post this device token to the user settings
+    NSString *signinEndpoint = [NSString stringWithFormat:@"%@/v1/users/me/devices", [SessionsConfiguration sessionsApiEndpoint]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:signinEndpoint] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30];
+    
+    NSError *error;
+    NSData *jsonData;
+    NSDictionary *params = @{ @"token": devTokes };
+    jsonData = [NSJSONSerialization dataWithJSONObject:params options:NSJSONWritingPrettyPrinted error:&error];
+    [request setHTTPBody:jsonData];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:[NSString stringWithFormat:@"%ld", (unsigned long)[jsonData length]] forHTTPHeaderField:@"Content-Length"];
+    if (error) {
+        return NSLog(@"error encoding json: %@", error);
+    }
+    
+    [request setHTTPMethod: @"POST"];
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        NSHTTPURLResponse *httpResonse = (NSHTTPURLResponse*)response;
+        if (connectionError) {
+            NSLog(@"error updating device token");
+        } else {
+            if ([httpResonse statusCode] == 200) {
+                NSLog(@"token exists");
+            } else {
+                if ([httpResonse statusCode] == 201) {
+                    NSLog(@"token added");
+                } else {
+                    NSLog(@"unknown token response");
+                }
+            }
+        }
+    }];
     
 }
 
