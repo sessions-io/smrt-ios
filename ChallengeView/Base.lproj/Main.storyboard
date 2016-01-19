@@ -60,7 +60,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Saved" id="Isy-b0-frC">
-                        <barButtonItem key="leftBarButtonItem" title="Profile" id="NXG-fm-u27"/>
+                        <barButtonItem key="leftBarButtonItem" title="Profile" id="NXG-fm-u27">
+                            <connections>
+                                <segue destination="cyZ-Yo-7gh" kind="show" id="KjQ-TD-6NA"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Add" id="W1C-CR-S2q">
                             <connections>
                                 <action selector="doAdd:" destination="Stm-51-YU1" id="24g-fZ-6cG"/>
@@ -104,15 +108,15 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Description" id="KpK-Xe-RkQ">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="100" id="U2U-w1-vBr">
-                                        <rect key="frame" x="0.0" y="225" width="375" height="100"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="140" id="U2U-w1-vBr">
+                                        <rect key="frame" x="0.0" y="225" width="375" height="140"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="U2U-w1-vBr" id="nWB-kn-tns">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="139"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="15w-ql-qXM">
-                                                    <rect key="frame" x="8" y="8" width="359" height="83"/>
+                                                    <rect key="frame" x="8" y="8" width="359" height="123"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -128,33 +132,10 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Sample Schedule" id="JSH-4q-rcF">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="150" id="Jeu-aq-FhW">
-                                        <rect key="frame" x="0.0" y="376" width="375" height="150"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jeu-aq-FhW" id="Ay7-4y-hrP">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="149"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="W6r-pf-A0p">
-                                                    <rect key="frame" x="67" y="11" width="240" height="128"/>
-                                                </imageView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="W6r-pf-A0p" firstAttribute="top" secondItem="Ay7-4y-hrP" secondAttribute="topMargin" constant="3" id="CxG-qk-F44"/>
-                                                <constraint firstItem="W6r-pf-A0p" firstAttribute="centerY" secondItem="Ay7-4y-hrP" secondAttribute="centerY" id="TDq-0W-UZU"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="W6r-pf-A0p" secondAttribute="trailing" constant="60" id="ltE-eP-aF7"/>
-                                                <constraint firstItem="W6r-pf-A0p" firstAttribute="centerX" secondItem="Ay7-4y-hrP" secondAttribute="centerX" id="vOU-st-Juh"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
                             <tableViewSection headerTitle="Actions" id="ck9-6A-Mpc">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Action" rowHeight="100" id="zW2-OQ-qqf">
-                                        <rect key="frame" x="0.0" y="577" width="375" height="100"/>
+                                        <rect key="frame" x="0.0" y="416" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zW2-OQ-qqf" id="UgU-fK-WOO">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
@@ -204,7 +185,6 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <outlet property="ChallengeSched" destination="W6r-pf-A0p" id="fge-uT-Gkp"/>
                         <outlet property="challengeDescLabel" destination="15w-ql-qXM" id="ktu-DF-iZ8"/>
                         <outlet property="challengeNameLabel" destination="DHw-Ng-uX9" id="P8D-vO-iw0"/>
                     </connections>
@@ -240,7 +220,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Active" id="Zlc-XJ-2B5">
-                        <barButtonItem key="leftBarButtonItem" title="Profile" id="D9s-gJ-BfO"/>
+                        <barButtonItem key="leftBarButtonItem" title="Profile" id="D9s-gJ-BfO">
+                            <connections>
+                                <segue destination="cyZ-Yo-7gh" kind="show" id="tOl-tM-nhS"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ixd-cl-VLm" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -310,7 +294,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Completed" id="T3Y-R2-6CZ">
-                        <barButtonItem key="leftBarButtonItem" title="Profile" id="AVc-LV-lPN"/>
+                        <barButtonItem key="leftBarButtonItem" title="Profile" id="AVc-LV-lPN">
+                            <connections>
+                                <segue destination="cyZ-Yo-7gh" kind="show" id="xXG-b1-LUJ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CjH-5d-dYI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -433,7 +421,6 @@
                     <navigationItem key="navigationItem" title="Profile" id="LDB-X9-qBD"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="deleteAccount" destination="I47-gs-KGO" id="Dly-fP-6TS"/>
                         <segue destination="BjU-8q-elq" kind="modal" identifier="DO_DELETE" id="d1U-BI-H99"/>
                     </connections>
                 </viewController>
@@ -537,4 +524,7 @@
             <point key="canvasLocation" x="2527.5" y="-0.5"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="xXG-b1-LUJ"/>
+    </inferredMetricsTieBreakers>
 </document>

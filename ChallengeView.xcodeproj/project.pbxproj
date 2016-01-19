@@ -22,6 +22,7 @@
 		C5B916071C4D895200F21FD6 /* Release.plist in Resources */ = {isa = PBXBuildFile; fileRef = C5B916061C4D895200F21FD6 /* Release.plist */; };
 		C5B9160A1C4D9EBE00F21FD6 /* AllChallengesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5B916091C4D9EBE00F21FD6 /* AllChallengesViewController.m */; };
 		C5B9160D1C4DF0E700F21FD6 /* SavedChallengeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5B9160C1C4DF0E700F21FD6 /* SavedChallengeTableViewController.m */; };
+		C5B916101C4EC84F00F21FD6 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5B9160F1C4EC84F00F21FD6 /* ProfileViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,8 @@
 		C5B916091C4D9EBE00F21FD6 /* AllChallengesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllChallengesViewController.m; sourceTree = "<group>"; };
 		C5B9160B1C4DF0E700F21FD6 /* SavedChallengeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavedChallengeTableViewController.h; sourceTree = "<group>"; };
 		C5B9160C1C4DF0E700F21FD6 /* SavedChallengeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavedChallengeTableViewController.m; sourceTree = "<group>"; };
+		C5B9160E1C4EC84F00F21FD6 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		C5B9160F1C4EC84F00F21FD6 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +131,8 @@
 				C5B916091C4D9EBE00F21FD6 /* AllChallengesViewController.m */,
 				C5B9160B1C4DF0E700F21FD6 /* SavedChallengeTableViewController.h */,
 				C5B9160C1C4DF0E700F21FD6 /* SavedChallengeTableViewController.m */,
+				C5B9160E1C4EC84F00F21FD6 /* ProfileViewController.h */,
+				C5B9160F1C4EC84F00F21FD6 /* ProfileViewController.m */,
 			);
 			path = ChallengeView;
 			sourceTree = "<group>";
@@ -276,6 +281,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5B915FA1C4D718000F21FD6 /* ActiveChallengesViewController.m in Sources */,
+				C5B916101C4EC84F00F21FD6 /* ProfileViewController.m in Sources */,
 				C5B915F71C4D716B00F21FD6 /* SavedChallengesViewController.m in Sources */,
 				C5B916001C4D720E00F21FD6 /* CompletedChallengesViewController.m in Sources */,
 				C5B9160D1C4DF0E700F21FD6 /* SavedChallengeTableViewController.m in Sources */,

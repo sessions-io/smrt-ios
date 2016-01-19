@@ -12,7 +12,6 @@
 
 @property IBOutlet UITableViewCell *challengeNameLabel;
 @property IBOutlet UILabel *challengeDescLabel;
-@property IBOutlet UIImageView *ChallengeSched;
 
 @property NSString *challengeId;
 @property NSString *challengeName;

@@ -9,6 +9,7 @@
 #import "ActiveChallengesViewController.h"
 #import "SessionsConfiguration.h"
 #import "SavedChallengeTableViewController.h"
+#import "AppDelegate.h"
 
 @interface ActiveChallengesViewController ()
 
@@ -101,32 +102,81 @@
     // If row is deleted, remove it from the list.
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
-        NSString *challengeId = [[_challenges objectAtIndex:indexPath.row] objectForKey:@"id"];
-        NSLog(@"deleting %@", challengeId);
-        NSString *signinEndpoint = [NSString stringWithFormat:@"%@/v1/users/me/challenges/active/%@", [SessionsConfiguration sessionsApiEndpoint], challengeId];
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:signinEndpoint] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30];
-        [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-        [request setHTTPMethod: @"DELETE"];
-        [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        UIAlertController *ctrl = [UIAlertController alertControllerWithTitle:@"Drop Challenge" message:@"Would you like to re-save or remove this challenge completely?" preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction *resaveButton = [UIAlertAction actionWithTitle:@"Re-save" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             
-            NSHTTPURLResponse *httpResonse = (NSHTTPURLResponse*)response;
-            if (connectionError) {
+            NSString *challengeId = [[_challenges objectAtIndex:indexPath.row] objectForKey:@"id"];
+            NSLog(@"re-saving %@", challengeId);
+            NSString *signinEndpoint = [NSString stringWithFormat:@"%@/v1/users/me/challenges/active/%@", [SessionsConfiguration sessionsApiEndpoint], challengeId];
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:signinEndpoint] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30];
+            [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+            [request setHTTPMethod: @"PUT"];
+            [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
                 
-                NSLog(@"error adding challenge");
-                
-            } else {
-                
-                if ([httpResonse statusCode] == 200) {
+                NSHTTPURLResponse *httpResonse = (NSHTTPURLResponse*)response;
+                if (connectionError) {
                     
-                    NSMutableArray *updated = [[NSMutableArray alloc] initWithArray:_challenges];
-                    [updated removeObjectAtIndex:indexPath.row];
-                    _challenges = [[NSArray alloc] initWithArray:updated];
-                    [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+                    NSLog(@"error adding challenge");
                     
                 } else {
-                    NSLog(@"delete error");
+                    
+                    if ([httpResonse statusCode] == 200) {
+                        
+                        NSMutableArray *updated = [[NSMutableArray alloc] initWithArray:_challenges];
+                        [updated removeObjectAtIndex:indexPath.row];
+                        _challenges = [[NSArray alloc] initWithArray:updated];
+                        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+                        AppDelegate *app = [UIApplication sharedApplication].delegate;
+                        [app refreshchallenges];
+                        
+                    } else {
+                        NSLog(@"delete error");
+                    }
                 }
-            }
+                
+            }];
+            
+        }];
+        
+        UIAlertAction *removeButton = [UIAlertAction actionWithTitle:@"Remove" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+           
+            NSString *challengeId = [[_challenges objectAtIndex:indexPath.row] objectForKey:@"id"];
+            NSLog(@"deleting %@", challengeId);
+            NSString *signinEndpoint = [NSString stringWithFormat:@"%@/v1/users/me/challenges/active/%@", [SessionsConfiguration sessionsApiEndpoint], challengeId];
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:signinEndpoint] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30];
+            [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+            [request setHTTPMethod: @"DELETE"];
+            [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                
+                NSHTTPURLResponse *httpResonse = (NSHTTPURLResponse*)response;
+                if (connectionError) {
+                    
+                    NSLog(@"error adding challenge");
+                    
+                } else {
+                    
+                    if ([httpResonse statusCode] == 200) {
+                        
+                        NSMutableArray *updated = [[NSMutableArray alloc] initWithArray:_challenges];
+                        [updated removeObjectAtIndex:indexPath.row];
+                        _challenges = [[NSArray alloc] initWithArray:updated];
+                        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+                        
+                    } else {
+                        NSLog(@"delete error");
+                    }
+                }
+                
+            }];
+            
+        }];
+        
+        [ctrl addAction:resaveButton];
+        [ctrl addAction:removeButton];
+        
+        [self presentViewController:ctrl animated:YES completion:^{
+            
             
         }];
         
