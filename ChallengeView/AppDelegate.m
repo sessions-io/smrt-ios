@@ -290,10 +290,12 @@
                                                                             for (HKWorkout *sample in results) {
                                                                                 
                                                                                 // skip manual records
+                                                                                /*
                                                                                 NSDictionary *meta = sample.metadata;
                                                                                 if ([meta objectForKey:@"HKWasUserEntered"]) {
                                                                                     continue;
                                                                                 }
+                                                                                */
                                                                                 
                                                                                 // skip unsupported activitiess
                                                                                 NSString *activityString;

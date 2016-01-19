@@ -10,6 +10,7 @@
 #import "SessionsConfiguration.h"
 #import "SavedChallengeTableViewController.h"
 #import "AppDelegate.h"
+#import "ActiveChallengeTableViewController.h"
 
 @interface ActiveChallengesViewController ()
 
@@ -193,6 +194,18 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
 
+    if ([[segue identifier] isEqualToString:@"CHALLENGE_DETAIL"]) {
+        
+        ActiveChallengeTableViewController *ctrl = [segue destinationViewController];
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        NSDictionary *challenge = [_challenges objectAtIndex:indexPath.row];
+        
+        NSLog(@"challenge = %@", challenge);
+        ctrl.challengeName = [challenge objectForKey:@"name"];
+        ctrl.challengeId = [challenge objectForKey:@"id"];
+        ctrl.sessions = [challenge objectForKey: @"sessions"];
+        
+    }
     
 }
 

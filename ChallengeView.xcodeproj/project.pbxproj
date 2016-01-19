@@ -23,6 +23,8 @@
 		C5B9160A1C4D9EBE00F21FD6 /* AllChallengesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5B916091C4D9EBE00F21FD6 /* AllChallengesViewController.m */; };
 		C5B9160D1C4DF0E700F21FD6 /* SavedChallengeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5B9160C1C4DF0E700F21FD6 /* SavedChallengeTableViewController.m */; };
 		C5B916101C4EC84F00F21FD6 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5B9160F1C4EC84F00F21FD6 /* ProfileViewController.m */; };
+		C5EFC98C1C4EE8A900835B33 /* ActiveChallengeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5EFC98B1C4EE8A900835B33 /* ActiveChallengeTableViewController.m */; };
+		C5EFC98F1C4EE9DE00835B33 /* ProgressTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C5EFC98E1C4EE9DE00835B33 /* ProgressTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +57,10 @@
 		C5B9160C1C4DF0E700F21FD6 /* SavedChallengeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavedChallengeTableViewController.m; sourceTree = "<group>"; };
 		C5B9160E1C4EC84F00F21FD6 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		C5B9160F1C4EC84F00F21FD6 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		C5EFC98A1C4EE8A900835B33 /* ActiveChallengeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveChallengeTableViewController.h; sourceTree = "<group>"; };
+		C5EFC98B1C4EE8A900835B33 /* ActiveChallengeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveChallengeTableViewController.m; sourceTree = "<group>"; };
+		C5EFC98D1C4EE9DE00835B33 /* ProgressTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProgressTableViewCell.h; sourceTree = "<group>"; };
+		C5EFC98E1C4EE9DE00835B33 /* ProgressTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProgressTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +139,10 @@
 				C5B9160C1C4DF0E700F21FD6 /* SavedChallengeTableViewController.m */,
 				C5B9160E1C4EC84F00F21FD6 /* ProfileViewController.h */,
 				C5B9160F1C4EC84F00F21FD6 /* ProfileViewController.m */,
+				C5EFC98A1C4EE8A900835B33 /* ActiveChallengeTableViewController.h */,
+				C5EFC98B1C4EE8A900835B33 /* ActiveChallengeTableViewController.m */,
+				C5EFC98D1C4EE9DE00835B33 /* ProgressTableViewCell.h */,
+				C5EFC98E1C4EE9DE00835B33 /* ProgressTableViewCell.m */,
 			);
 			path = ChallengeView;
 			sourceTree = "<group>";
@@ -284,10 +294,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5B915FA1C4D718000F21FD6 /* ActiveChallengesViewController.m in Sources */,
+				C5EFC98F1C4EE9DE00835B33 /* ProgressTableViewCell.m in Sources */,
 				C5B916101C4EC84F00F21FD6 /* ProfileViewController.m in Sources */,
 				C5B915F71C4D716B00F21FD6 /* SavedChallengesViewController.m in Sources */,
 				C5B916001C4D720E00F21FD6 /* CompletedChallengesViewController.m in Sources */,
 				C5B9160D1C4DF0E700F21FD6 /* SavedChallengeTableViewController.m in Sources */,
+				C5EFC98C1C4EE8A900835B33 /* ActiveChallengeTableViewController.m in Sources */,
 				C55D12691C49D8AE00FEF6C6 /* AppDelegate.m in Sources */,
 				C55D12661C49D8AE00FEF6C6 /* main.m in Sources */,
 				C5B916031C4D889500F21FD6 /* SessionsConfiguration.m in Sources */,
