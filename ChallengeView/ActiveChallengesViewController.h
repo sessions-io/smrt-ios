@@ -10,4 +10,7 @@
 
 @interface ActiveChallengesViewController : UITableViewController
 
+-(void)reloadChallenges;
+
+
 @end

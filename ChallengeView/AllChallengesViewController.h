@@ -1,5 +1,5 @@
 //
-//  CompletedChallengesViewController.h
+//  AllChallengesViewController.h
 //  ChallengeView
 //
 //  Created by Jeff Kingyens on 1/18/16.
@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CompletedChallengesViewController : UITableViewController
+@interface AllChallengesViewController : UITabBarController
 
--(void)reloadChallenges;
+-(void)refreshChallenges;
 
 @end

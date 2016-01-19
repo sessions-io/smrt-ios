@@ -11,7 +11,13 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property NSDictionary *launchOpts;
 
+- (BOOL)signUp;
+- (BOOL)signIn:(NSString*)userId;
+
+- (BOOL)installHealthListener;
+- (BOOL)refreshchallenges;
 
 @end
 

@@ -10,4 +10,9 @@
 
 @interface SavedChallengesViewController : UITableViewController
 
+@property NSArray *challenges;
+
+-(void)reloadChallenges;
+-(IBAction)doAdd:(id)sender;
+
 @end

@@ -29,6 +29,14 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)reloadChallenges {
+    
+    // load from server
+    
+    
+    // refresh the utiableviewlist
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
