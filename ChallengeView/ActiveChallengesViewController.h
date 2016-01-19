@@ -10,7 +10,7 @@
 
 @interface ActiveChallengesViewController : UITableViewController
 
+@property NSArray *challenges;
 -(void)reloadChallenges;
-
 
 @end

@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--All Challenges View Controller-->
@@ -36,20 +37,20 @@
         <scene sceneID="BYh-ww-yK9">
             <objects>
                 <tableViewController id="Stm-51-YU1" customClass="SavedChallengesViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="8fo-QU-22s">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="65" sectionHeaderHeight="28" sectionFooterHeight="28" id="8fo-QU-22s">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CHALLENGE" id="CFZ-7E-KK0">
-                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="375" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CFZ-7E-KK0" id="7uJ-8B-QPu">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="0Sv-au-8ci" kind="show" id="395-Qx-cma"/>
+                                    <segue destination="0Sv-au-8ci" kind="show" identifier="CHALLENGE_DETAIL" id="395-Qx-cma"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -71,59 +72,127 @@
             </objects>
             <point key="canvasLocation" x="1817.5" y="-823.5"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Saved Challenge Table View Controller-->
         <scene sceneID="djq-QN-tDY">
             <objects>
-                <tableViewController id="0Sv-au-8ci" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="KrR-X5-vUL">
+                <tableViewController id="0Sv-au-8ci" customClass="SavedChallengeTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="KrR-X5-vUL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection headerTitle="Name" id="rxg-OJ-QYe">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="DHw-Ng-uX9">
-                                        <rect key="frame" x="0.0" y="114" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="IBr-zU-9hF" rowHeight="60" style="IBUITableViewCellStyleDefault" id="DHw-Ng-uX9">
+                                        <rect key="frame" x="0.0" y="114" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DHw-Ng-uX9" id="40U-Sn-grr">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IBr-zU-9hF">
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="59"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="Description" id="KpK-Xe-RkQ">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="U2U-w1-vBr">
-                                        <rect key="frame" x="0.0" y="209" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="100" id="U2U-w1-vBr">
+                                        <rect key="frame" x="0.0" y="225" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="U2U-w1-vBr" id="nWB-kn-tns">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="15w-ql-qXM">
+                                                    <rect key="frame" x="8" y="8" width="359" height="83"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="topMargin" secondItem="15w-ql-qXM" secondAttribute="top" id="5jF-3H-mU0"/>
+                                                <constraint firstItem="15w-ql-qXM" firstAttribute="centerX" secondItem="nWB-kn-tns" secondAttribute="centerX" id="8Va-FA-g78"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="15w-ql-qXM" secondAttribute="trailing" id="AyC-h3-WrS"/>
+                                                <constraint firstItem="15w-ql-qXM" firstAttribute="centerY" secondItem="nWB-kn-tns" secondAttribute="centerY" id="dVh-1E-fhh"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="Sample Schedule" id="JSH-4q-rcF">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Jeu-aq-FhW">
-                                        <rect key="frame" x="0.0" y="304" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="150" id="Jeu-aq-FhW">
+                                        <rect key="frame" x="0.0" y="376" width="375" height="150"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jeu-aq-FhW" id="Ay7-4y-hrP">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="149"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="W6r-pf-A0p">
+                                                    <rect key="frame" x="67" y="11" width="240" height="128"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="W6r-pf-A0p" firstAttribute="top" secondItem="Ay7-4y-hrP" secondAttribute="topMargin" constant="3" id="CxG-qk-F44"/>
+                                                <constraint firstItem="W6r-pf-A0p" firstAttribute="centerY" secondItem="Ay7-4y-hrP" secondAttribute="centerY" id="TDq-0W-UZU"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="W6r-pf-A0p" secondAttribute="trailing" constant="60" id="ltE-eP-aF7"/>
+                                                <constraint firstItem="W6r-pf-A0p" firstAttribute="centerX" secondItem="Ay7-4y-hrP" secondAttribute="centerX" id="vOU-st-Juh"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="Actions" id="ck9-6A-Mpc">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Action" id="zW2-OQ-qqf">
-                                        <rect key="frame" x="0.0" y="399" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Action" rowHeight="100" id="zW2-OQ-qqf">
+                                        <rect key="frame" x="0.0" y="577" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zW2-OQ-qqf" id="UgU-fK-WOO">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sdo-M7-lRU">
+                                                    <rect key="frame" x="39" y="26" width="130" height="48"/>
+                                                    <color key="backgroundColor" red="1" green="0.1176470588" blue="0.36078431370000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                    <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                                                    <state key="normal" title="Remove">
+                                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="removeChallege:" destination="0Sv-au-8ci" eventType="touchUpInside" id="aqb-o9-ElQ"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0HW-nI-5I9">
+                                                    <rect key="frame" x="203" y="26" width="130" height="48"/>
+                                                    <color key="backgroundColor" red="1" green="0.1176470588" blue="0.36078431370000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                    <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
+                                                    <state key="normal" title="Accept">
+                                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="acceptChallenge:" destination="0Sv-au-8ci" eventType="touchUpInside" id="wNu-hX-sfy"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="0HW-nI-5I9" firstAttribute="leading" secondItem="sdo-M7-lRU" secondAttribute="trailing" constant="34" id="DIe-Mo-In8"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="0HW-nI-5I9" secondAttribute="trailing" constant="34" id="Hcp-mO-QDb"/>
+                                                <constraint firstItem="sdo-M7-lRU" firstAttribute="leading" secondItem="UgU-fK-WOO" secondAttribute="leadingMargin" constant="31" id="Hsd-Zs-gDF"/>
+                                                <constraint firstItem="sdo-M7-lRU" firstAttribute="centerY" secondItem="UgU-fK-WOO" secondAttribute="centerY" id="LHZ-MJ-8dh"/>
+                                                <constraint firstItem="0HW-nI-5I9" firstAttribute="centerY" secondItem="UgU-fK-WOO" secondAttribute="centerY" id="bgj-kJ-d1M"/>
+                                                <constraint firstItem="0HW-nI-5I9" firstAttribute="width" secondItem="sdo-M7-lRU" secondAttribute="width" id="gkb-o5-Gzk"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
@@ -134,6 +203,11 @@
                             <outlet property="delegate" destination="0Sv-au-8ci" id="O32-P4-Ux9"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="ChallengeSched" destination="W6r-pf-A0p" id="fge-uT-Gkp"/>
+                        <outlet property="challengeDescLabel" destination="15w-ql-qXM" id="ktu-DF-iZ8"/>
+                        <outlet property="challengeNameLabel" destination="DHw-Ng-uX9" id="P8D-vO-iw0"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9oo-ei-cVZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -143,16 +217,16 @@
         <scene sceneID="fHJ-Hz-c8v">
             <objects>
                 <tableViewController id="9Gf-G5-DrV" customClass="ActiveChallengesViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="dHn-Yj-rAf">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="65" sectionHeaderHeight="28" sectionFooterHeight="28" id="dHn-Yj-rAf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CHALLENGE" id="WH6-c6-AQm">
-                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="375" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WH6-c6-AQm" id="F72-hY-Phh">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
@@ -213,16 +287,16 @@
         <scene sceneID="RFY-eG-2hJ">
             <objects>
                 <tableViewController id="tEg-n1-aT7" customClass="CompletedChallengesViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Uis-X7-QTG">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="65" sectionHeaderHeight="28" sectionFooterHeight="28" id="Uis-X7-QTG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CHALLENGE" id="9uO-Ft-dmQ">
-                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="375" height="65"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9uO-Ft-dmQ" id="XqX-oH-Olk">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>

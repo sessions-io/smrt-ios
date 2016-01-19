@@ -21,6 +21,7 @@
 		C5B916051C4D893800F21FD6 /* Debug.plist in Resources */ = {isa = PBXBuildFile; fileRef = C5B916041C4D893800F21FD6 /* Debug.plist */; };
 		C5B916071C4D895200F21FD6 /* Release.plist in Resources */ = {isa = PBXBuildFile; fileRef = C5B916061C4D895200F21FD6 /* Release.plist */; };
 		C5B9160A1C4D9EBE00F21FD6 /* AllChallengesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5B916091C4D9EBE00F21FD6 /* AllChallengesViewController.m */; };
+		C5B9160D1C4DF0E700F21FD6 /* SavedChallengeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5B9160C1C4DF0E700F21FD6 /* SavedChallengeTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,8 @@
 		C5B916061C4D895200F21FD6 /* Release.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Release.plist; sourceTree = "<group>"; };
 		C5B916081C4D9EBE00F21FD6 /* AllChallengesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllChallengesViewController.h; sourceTree = "<group>"; };
 		C5B916091C4D9EBE00F21FD6 /* AllChallengesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllChallengesViewController.m; sourceTree = "<group>"; };
+		C5B9160B1C4DF0E700F21FD6 /* SavedChallengeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SavedChallengeTableViewController.h; sourceTree = "<group>"; };
+		C5B9160C1C4DF0E700F21FD6 /* SavedChallengeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SavedChallengeTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +126,8 @@
 				C5B916061C4D895200F21FD6 /* Release.plist */,
 				C5B916081C4D9EBE00F21FD6 /* AllChallengesViewController.h */,
 				C5B916091C4D9EBE00F21FD6 /* AllChallengesViewController.m */,
+				C5B9160B1C4DF0E700F21FD6 /* SavedChallengeTableViewController.h */,
+				C5B9160C1C4DF0E700F21FD6 /* SavedChallengeTableViewController.m */,
 			);
 			path = ChallengeView;
 			sourceTree = "<group>";
@@ -273,6 +278,7 @@
 				C5B915FA1C4D718000F21FD6 /* ActiveChallengesViewController.m in Sources */,
 				C5B915F71C4D716B00F21FD6 /* SavedChallengesViewController.m in Sources */,
 				C5B916001C4D720E00F21FD6 /* CompletedChallengesViewController.m in Sources */,
+				C5B9160D1C4DF0E700F21FD6 /* SavedChallengeTableViewController.m in Sources */,
 				C55D12691C49D8AE00FEF6C6 /* AppDelegate.m in Sources */,
 				C55D12661C49D8AE00FEF6C6 /* main.m in Sources */,
 				C5B916031C4D889500F21FD6 /* SessionsConfiguration.m in Sources */,

@@ -9,6 +9,7 @@
 #import "SavedChallengesViewController.h"
 #import "SessionsConfiguration.h"
 #import "AppDelegate.h"
+#import "SavedChallengeTableViewController.h"
 
 @interface SavedChallengesViewController ()
 
@@ -231,14 +232,22 @@
     }
 }
 
-/*
-#pragma mark - Navigation
-
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
+    
     // Pass the selected object to the new view controller.
+    
+    if ([[segue identifier] isEqualToString:@"CHALLENGE_DETAIL"]) {
+
+        SavedChallengeTableViewController *ctrl = [segue destinationViewController];
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        NSDictionary *challenge = [_challenges objectAtIndex:indexPath.row];
+        ctrl.challengeName = [challenge objectForKey:@"name"];
+        ctrl.challengeId = [challenge objectForKey:@"id"];
+        ctrl.challengeDesc = [challenge objectForKey:@"summary"];
+        
+    }
+    
 }
-*/
 
 @end
