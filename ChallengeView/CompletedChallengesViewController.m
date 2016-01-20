@@ -7,6 +7,7 @@
 //
 
 #import "CompletedChallengesViewController.h"
+#import "SessionsConfiguration.h"
 
 @interface CompletedChallengesViewController ()
 
@@ -31,67 +32,109 @@
 
 -(void)reloadChallenges {
     
-    // load from server
+    // fetch this challenge from the URL into dictionary
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSString *serverEndpoint = [NSString stringWithFormat:@"%@/v1/users/me/challenges/completed", [SessionsConfiguration sessionsApiEndpoint]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:serverEndpoint] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setHTTPMethod:@"GET"];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        NSHTTPURLResponse *httpResonse = (NSHTTPURLResponse*)response;
+        if (error || [httpResonse statusCode] != 200) {
+            
+            NSLog(@"status code = %ld", (long)[httpResonse statusCode]);
+            NSLog(@"error loading challenge");
+            
+        } else {
+            
+            // parse the challenge JSON object
+            NSError *error;
+            _challenges = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
+            if (error) {
+                NSLog(@"error decoding challenges array");
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), ^() {
+                
+                // refresh the utiableviewlist
+                [[self tableView] reloadData];
+                
+            });
+            
+        }
+        
+    }];
+    [task resume];
     
-    
-    // refresh the utiableviewlist
 }
 
-#pragma mark - Table view data source
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    if (!_challenges) {
+        return 0;
+    }
+    return [_challenges count];
 }
 
-/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CHALLENGE" forIndexPath:indexPath];
     
-    // Configure the cell...
-    
+    NSDictionary *challenge = [_challenges objectAtIndex:indexPath.row];
+    [cell.textLabel setText:[challenge objectForKey:@"name"]];
     return cell;
+    
 }
-*/
 
-/*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
 
-/*
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    // If row is deleted, remove it from the list.
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+        
+        NSString *challengeId = [[_challenges objectAtIndex:indexPath.row] objectForKey:@"id"];
+        NSLog(@"deleting %@", challengeId);
+        NSString *signinEndpoint = [NSString stringWithFormat:@"%@/v1/users/me/challenges/completed/%@", [SessionsConfiguration sessionsApiEndpoint], challengeId];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:signinEndpoint] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30];
+        [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+        [request setHTTPMethod: @"DELETE"];
+        [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+            
+            NSHTTPURLResponse *httpResonse = (NSHTTPURLResponse*)response;
+            if (connectionError) {
+                
+                NSLog(@"error adding challenge");
+                
+            } else {
+                
+                if ([httpResonse statusCode] == 200) {
+                    
+                    NSMutableArray *updated = [[NSMutableArray alloc] initWithArray:_challenges];
+                    [updated removeObjectAtIndex:indexPath.row];
+                    _challenges = [[NSArray alloc] initWithArray:updated];
+                    [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+                    
+                } else {
+                    NSLog(@"delete error");
+                }
+            }
+            
+        }];
+        
+    }
+    
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 /*
 #pragma mark - Navigation

@@ -29,12 +29,6 @@
     NSUserDefaults *defs = [NSUserDefaults standardUserDefaults];
     NSString *userId = [defs objectForKey:@"userId"];
     if (userId) {
-    
-        // if we've asked for notifiations and we have access, then register
-        if ([defs objectForKey:@"askedNotifications"]) {
-            NSLog(@"registering");
-            [[UIApplication sharedApplication] registerForRemoteNotifications];
-        }
         
         // if we've asked for healthkit and we have access, then register
         NSNumber *healthAsked = [defs objectForKey:@"healthPerm"];
@@ -197,6 +191,12 @@
             
         } else {
             
+            // if we've asked for notifiations and we have access, then register
+            if ([defs objectForKey:@"askedNotifications"]) {
+                NSLog(@"registering");
+                [[UIApplication sharedApplication] registerForRemoteNotifications];
+            }
+            
             NSLog(@"user signed in %@", userId);
             NSString *responseBody = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
             NSLog(@"responseBody: %@", responseBody);
@@ -221,6 +221,8 @@
 
 // install background healthkit listener
 - (BOOL)installHealthListener {
+    
+    NSLog(@"installing health listener");
  
     // check for healthkit support
     if (![HKHealthStore isHealthDataAvailable]) {
@@ -350,7 +352,7 @@
                                                                             }
                                                                         
                                                                             // push new activiites
-                                                                            NSString *endpoint = [NSString stringWithFormat:@"%@/v1/users/me/addsessions", [SessionsConfiguration sessionsApiEndpoint]];
+                                                                            NSString *endpoint = [NSString stringWithFormat:@"%@/v1/users/me/addsessions2", [SessionsConfiguration sessionsApiEndpoint]];
                                                                             NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:endpoint] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30];
                                                                             [request setHTTPMethod: @"POST"];
                                                                             [request setHTTPBody:jsonData];
@@ -459,7 +461,7 @@
                 if ([httpResonse statusCode] == 201) {
                     NSLog(@"token added");
                 } else {
-                    NSLog(@"unknown token response");
+                    NSLog(@"unknown token response: %ld", [httpResonse statusCode]);
                 }
             }
         }
