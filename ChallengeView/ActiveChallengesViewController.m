@@ -203,6 +203,7 @@
         NSLog(@"challenge = %@", challenge);
         ctrl.challengeName = [challenge objectForKey:@"name"];
         ctrl.challengeId = [challenge objectForKey:@"id"];
+        ctrl.challengeProgress = [challenge objectForKey:@"progress"];
         ctrl.sessions = [challenge objectForKey: @"sessions"];
         
     }

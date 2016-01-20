@@ -1,19 +1,18 @@
 //
-//  ActiveChallengeTableViewController.m
+//  CompletedChallengeTableViewController.m
 //  ChallengeView
 //
 //  Created by Jeff Kingyens on 1/19/16.
 //  Copyright © 2016 Sessions-io. All rights reserved.
 //
 
-#import "ActiveChallengeTableViewController.h"
-#import "ProgressTableViewCell.h"
+#import "CompletedChallengeTableViewController.h"
 
-@interface ActiveChallengeTableViewController ()
+@interface CompletedChallengeTableViewController ()
 
 @end
 
-@implementation ActiveChallengeTableViewController
+@implementation CompletedChallengeTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -31,12 +30,12 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    if (section == 0 || section == 1) {
+    if (section == 0) {
         return 1;
     } else {
         if (!_sessions) {
@@ -51,42 +50,25 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     
-    NSString *sectionName;
-    switch (section)
-    {
-        case 0:
-            sectionName = @"Name";
-            break;
-        case 1:
-            sectionName = @"Progress";
-            break;
-        default:
-            sectionName = @"Sessions";
-            break;
+    if (section == 0) {
+        return @"Name";
+    } else {
+        return @"Sessions";
     }
-    return sectionName;
     
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
+    
     // the title of the challenge
     if (indexPath.section == 0) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TITLE" forIndexPath:indexPath];
         [cell.textLabel setText:_challengeName];
-        NSLog(@"setting name = %@", _challengeName);
-        return cell;
-    }
-    
-    // the progress of the challenge
-    if (indexPath.section == 1) {
-        ProgressTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PROGRESS" forIndexPath:indexPath];
-        [cell.progress setProgress:[_challengeProgress floatValue] animated:YES];
         return cell;
     }
     
     // the sessions that contribute to challenge
-    if (indexPath.section == 2) {
+    if (indexPath.section == 1) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ACTIVITY" forIndexPath:indexPath];
         NSDictionary *session = [_sessions objectAtIndex:indexPath.row];
         NSNumberFormatter *fmt = [[NSNumberFormatter alloc] init];
@@ -106,15 +88,19 @@
         }
         cell.textLabel.text = [NSString stringWithFormat:@"%@ for %@ miles in %@ seconds", printedWalk, distance, interval];
         return cell;
-        return cell;
     }
     
     return nil;
 }
 
+/*
+#pragma mark - Navigation
+
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
 }
+*/
 
 @end

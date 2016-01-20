@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8703CE80ABF4D08C7613830A /* libPods-ChallengeView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 052811A27AA83CB2AE908404 /* libPods-ChallengeView.a */; };
+		C55269B31C4F347B0072FED7 /* CompletedChallengeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C55269B21C4F347B0072FED7 /* CompletedChallengeTableViewController.m */; };
 		C55D12661C49D8AE00FEF6C6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C55D12651C49D8AE00FEF6C6 /* main.m */; };
 		C55D12691C49D8AE00FEF6C6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C55D12681C49D8AE00FEF6C6 /* AppDelegate.m */; };
 		C55D12721C49D8AE00FEF6C6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C55D12701C49D8AE00FEF6C6 /* Main.storyboard */; };
@@ -31,6 +32,8 @@
 		052811A27AA83CB2AE908404 /* libPods-ChallengeView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ChallengeView.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C05E55276426F488878375E /* Pods-ChallengeView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChallengeView.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChallengeView/Pods-ChallengeView.debug.xcconfig"; sourceTree = "<group>"; };
 		B87663A448A904295E7F3C4E /* Pods-ChallengeView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChallengeView.release.xcconfig"; path = "Pods/Target Support Files/Pods-ChallengeView/Pods-ChallengeView.release.xcconfig"; sourceTree = "<group>"; };
+		C55269B11C4F347B0072FED7 /* CompletedChallengeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompletedChallengeTableViewController.h; sourceTree = "<group>"; };
+		C55269B21C4F347B0072FED7 /* CompletedChallengeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletedChallengeTableViewController.m; sourceTree = "<group>"; };
 		C55D12611C49D8AE00FEF6C6 /* ChallengeView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChallengeView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C55D12651C49D8AE00FEF6C6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		C55D12671C49D8AE00FEF6C6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -143,6 +146,8 @@
 				C5EFC98B1C4EE8A900835B33 /* ActiveChallengeTableViewController.m */,
 				C5EFC98D1C4EE9DE00835B33 /* ProgressTableViewCell.h */,
 				C5EFC98E1C4EE9DE00835B33 /* ProgressTableViewCell.m */,
+				C55269B11C4F347B0072FED7 /* CompletedChallengeTableViewController.h */,
+				C55269B21C4F347B0072FED7 /* CompletedChallengeTableViewController.m */,
 			);
 			path = ChallengeView;
 			sourceTree = "<group>";
@@ -294,6 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5B915FA1C4D718000F21FD6 /* ActiveChallengesViewController.m in Sources */,
+				C55269B31C4F347B0072FED7 /* CompletedChallengeTableViewController.m in Sources */,
 				C5EFC98F1C4EE9DE00835B33 /* ProgressTableViewCell.m in Sources */,
 				C5B916101C4EC84F00F21FD6 /* ProfileViewController.m in Sources */,
 				C5B915F71C4D716B00F21FD6 /* SavedChallengesViewController.m in Sources */,

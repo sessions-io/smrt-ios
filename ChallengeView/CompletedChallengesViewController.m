@@ -8,6 +8,7 @@
 
 #import "CompletedChallengesViewController.h"
 #import "SessionsConfiguration.h"
+#import "CompletedChallengeTableViewController.h"
 
 @interface CompletedChallengesViewController ()
 
@@ -136,14 +137,21 @@
 }
 
 
-/*
-#pragma mark - Navigation
-
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    
+    if ([[segue identifier] isEqualToString:@"CHALLENGE_DETAIL"]) {
+        
+        CompletedChallengeTableViewController *ctrl = [segue destinationViewController];
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        NSDictionary *challenge = [_challenges objectAtIndex:indexPath.row];
+        
+        NSLog(@"challenge = %@", challenge);
+        ctrl.challengeName = [challenge objectForKey:@"name"];
+        ctrl.challengeId = [challenge objectForKey:@"id"];
+        ctrl.sessions = [challenge objectForKey: @"sessions"];
+        
+    }
 }
-*/
 
 @end

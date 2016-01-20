@@ -62,6 +62,8 @@
                 // refresh the utiableviewlist
                 [[self tableView] reloadData];
                 
+                // if we arent the top view 
+                
             });
     
         }
