@@ -62,7 +62,14 @@
                 // refresh the utiableviewlist
                 [[self tableView] reloadData];
                 
-                // if we arent the top view 
+                // if we are showing a detail view, reload it as well
+                UINavigationController *ctrl = [self navigationController];
+                UIViewController *top = [ctrl topViewController];
+                if (top != self && [top isKindOfClass:UITableViewController.class]) {
+                  
+                    [ctrl popToRootViewControllerAnimated:YES];
+                    
+                }
                 
             });
     

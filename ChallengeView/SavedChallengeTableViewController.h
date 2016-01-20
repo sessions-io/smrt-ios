@@ -19,5 +19,6 @@
 
 -(IBAction)removeChallege:(id)sender;
 -(IBAction)acceptChallenge:(id)sender;
+-(void)loadUIData;
 
 @end

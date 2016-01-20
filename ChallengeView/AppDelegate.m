@@ -418,6 +418,17 @@
         
     }
     
+    
+    // handle challenge completed
+    if ([[userInfo objectForKey:@"type"] isEqualToString:@"new_sessions"]) {
+        
+        // refresh challenges
+        [self refreshchallenges];
+        return completionHandler(UIBackgroundFetchResultNewData);
+        
+    }
+    
+    
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
