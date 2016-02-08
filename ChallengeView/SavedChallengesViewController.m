@@ -117,7 +117,7 @@
                 }
                 
                 // now we can push this challenge into the users list
-                NSString *endpoint = [NSString stringWithFormat:@"%@/v1/users/me/challenges2", [SessionsConfiguration sessionsApiEndpoint]];
+                NSString *endpoint = [NSString stringWithFormat:@"%@/v1/users/me/challenges", [SessionsConfiguration sessionsApiEndpoint]];
                 NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:endpoint] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30];
                 [request setHTTPMethod: @"POST"];
                 [request setHTTPBody:data];

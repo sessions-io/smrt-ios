@@ -80,7 +80,7 @@
     }
     
     // post user with password
-    NSString *signinEndpoint = [NSString stringWithFormat:@"%@/v1/users/me2", [SessionsConfiguration sessionsApiEndpoint]];
+    NSString *signinEndpoint = [NSString stringWithFormat:@"%@/v1/users/me", [SessionsConfiguration sessionsApiEndpoint]];
     NSLog(@"signin endpoint = %@", signinEndpoint);
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:signinEndpoint] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30];
     [request setHTTPBody:jsonData];
@@ -149,7 +149,7 @@
 
     // perform sign in
     NSURLSession *session = [NSURLSession sharedSession];
-    NSString *signinEndpoint = [NSString stringWithFormat:@"%@/v1/native2", [SessionsConfiguration sessionsApiEndpoint]];
+    NSString *signinEndpoint = [NSString stringWithFormat:@"%@/v1/native", [SessionsConfiguration sessionsApiEndpoint]];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:signinEndpoint] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:jsonData];
@@ -352,7 +352,7 @@
                                                                             }
                                                                         
                                                                             // push new activiites
-                                                                            NSString *endpoint = [NSString stringWithFormat:@"%@/v1/users/me/addsessions2", [SessionsConfiguration sessionsApiEndpoint]];
+                                                                            NSString *endpoint = [NSString stringWithFormat:@"%@/v1/users/me/sessions", [SessionsConfiguration sessionsApiEndpoint]];
                                                                             NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:endpoint] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30];
                                                                             [request setHTTPMethod: @"POST"];
                                                                             [request setHTTPBody:jsonData];
